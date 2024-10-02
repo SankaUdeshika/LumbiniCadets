@@ -36,12 +36,12 @@
         <div class="signin-header">
             <div class="row align-items-center">
                 <div class="col-sm-4">
-                    <a href="index.html"  style="width: 50px; height: 50px;"><img src="{{ asset('images/LOGO/lumbini_logo.png') }}" alt="logo"></a>
+                    <a href="index.html" style="width: 50px; height: 50px;"><img src="{{ asset('images/LOGO/lumbini_logo.png') }}" style="width: 100px;height: auto;" alt="logo"></a>
                 </div>
                 <div class="col-sm-8">
                     <div class="singin-header-btn">
                         <p>Not a member?</p>
-                        <a href="sign-up.html" class="axil-btn btn-bg-secondary sign-up-btn">Sign Up Now</a>
+                        <a href="{{route('gotosignup')}}" class="axil-btn btn-bg-secondary sign-up-btn">Sign Up Now</a>
                     </div>
                 </div>
             </div>
@@ -70,7 +70,7 @@
                                 <input type="password" class="form-control" id="password" value="">
                             </div>
                             <div class="form-group d-flex align-items-center justify-content-between">
-                                <button type="button" onclick="signIn();" class="axil-btn btn-bg-primary submit-btn">Sign In</button>
+                                <button type="button" onclick="signupNow();" class="axil-btn btn-bg-primary submit-btn">Sign In</button>
                                 <a href="verify-account.html" class="forgot-btn">Verify Your Account</a>
                             </div>
                         </form>
@@ -107,6 +107,7 @@
 
     <!-- My Script JS -->
     <script src="assets/js/signin.js"></script>
+
 </body>
 
 </html>
