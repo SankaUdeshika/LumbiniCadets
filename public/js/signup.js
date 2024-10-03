@@ -30,6 +30,7 @@ async function signup() {
             var response = r.responseText;
             if (r.responseText) {
                 alert("Registerd Succes, Please Sign in ");
+                window.location = "signin";
             } else {
                 alert(r.responseText);
             }

@@ -5,7 +5,13 @@ use App\Http\Controllers\RouteContorller;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('signin');
+    return view('signup');
 });
 
+Route::get('/signin', function () {
+    return view('signup');
+});
+
+
 Route::get('/signUp', [RouteContorller::class, 'GotoSignup'])->name('gotosignup');
+Route::get('/signIn', [RouteContorller::class, 'GotoSignin'])->name('gotosignin');

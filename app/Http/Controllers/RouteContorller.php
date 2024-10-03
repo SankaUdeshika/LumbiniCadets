@@ -11,4 +11,9 @@ class RouteContorller extends Controller
     {
         return view("signup");
     }
+    // go to sign in
+    public function GotoSignin()
+    {
+        return view("signin");
+    }
 }
