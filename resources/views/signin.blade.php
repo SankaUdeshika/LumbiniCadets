@@ -70,7 +70,7 @@
                                 <input type="password" class="form-control" id="password" value="">
                             </div>
                             <div class="form-group d-flex align-items-center justify-content-between">
-                                <button type="button" onclick="signupNow();" class="axil-btn btn-bg-primary submit-btn">Sign In</button>
+                                <button type="button" onclick="signIn();" class="axil-btn btn-bg-primary submit-btn">Sign In</button>
                                 <a href="verify-account.html" class="forgot-btn">Verify Your Account</a>
                             </div>
                         </form>
@@ -106,7 +106,8 @@
     <script src="assets/js/main.js"></script>
 
     <!-- My Script JS -->
-    <script src="assets/js/signin.js"></script>
+    <!-- signup -->
+    <script src="{{ asset('js/signin.js') }}"></script>
 
 </body>
 

@@ -5,7 +5,6 @@ use PhpParser\Node\Stmt\TryCatch;
 use function Laravel\Prompts\alert;
 use function PHPUnit\Framework\isEmpty;
 
-session_start();
 require "../public/Connection/connection.php";
 
 

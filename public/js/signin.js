@@ -1,49 +1,22 @@
-async  function signIn() {
+function signIn() {
+    var email = document.getElementById("email").value;
+    var password = document.getElementById("password").value;
 
-    const user_dto = {
-        email: document.getElementById("email").value,
-        password: document.getElementById("password").value,
-    };
+    var f = new FormData();
+    f.append("email", email);
+    f.append("password", password);
 
-
-
-
-    const response = await fetch("SignIn",
-            {
-                method: "POST",
-                body: JSON.stringify(user_dto),
-                headers: {
-                    "Content-type": "applicaiton/json"
-                }
-            }
-    );
-
-    if (response.ok) {
-        //response eke ena JSON eka ganne meken
-        const json = await response.json();
-        if (json.success) {
-            window.location = 'index.html';
-        } else {
-            if (json.content == "Unverified") {
-                window.location = "verify-account.html"
+    var r = new XMLHttpRequest();
+    r.onreadystatechange = function () {
+        if (r.readyState == 4 && r.status == 200) {
+            var response = r.responseText;
+            if (response == "succcess") {
+                window.location = "homepage";
             } else {
-                document.getElementById("message").innerHTML = json.content;
+                alert(r.responseText);
             }
         }
-
-
-
-
-
-
-    } else {
-        document.getElementById("message").innerHTML = "Please Try again Later";
-        console.log("error");
-    }
-
+    };
+    r.open("POST", "../signinProcess.php", true);
+    r.send(f);
 }
-
-
-
-
-

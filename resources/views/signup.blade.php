@@ -58,7 +58,7 @@
                 <div class="axil-signin-form-wrap">
                     <div class="axil-signin-form">
                         <h3 class="title">I'm New Here</h3>
-                        <p class="b2 mb--10">Create a new OLCA account to  and manage your Activities with ease.</p>
+                        <p class="b2 mb--10">Create a new OLCA account to and manage your Activities with ease.</p>
                         <p class=" b2 text-danger" style="color: red" id="message"></p>
                         <form class="singin-form">
                             <div class="form-group">
@@ -177,6 +177,7 @@
     <script src="{{ asset('js/main.js') }}"></script>
 
     <!-- My Script -->
+    <!-- signup -->
     <script src="{{ asset('js/signup.js') }}"></script>
 
 </body>

@@ -1,5 +1,11 @@
-<!doctype html>
-<html class="no-js" lang="en">
+<?php
+session_start();
+
+if (isset($_SESSION["user"])) {
+    $user_session = $_SESSION["user"];
+?>
+    <!doctype html>
+    <html class="no-js" lang="en">
 
     <head>
         <meta charset="utf-8">
@@ -13,18 +19,17 @@
 
         <!-- CSS
         ============================================ -->
-
         <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="assets/css/vendor/bootstrap.min.css">
-        <link rel="stylesheet" href="assets/css/vendor/font-awesome.css">
-        <link rel="stylesheet" href="assets/css/vendor/flaticon/flaticon.css">
-        <link rel="stylesheet" href="assets/css/vendor/slick.css">
-        <link rel="stylesheet" href="assets/css/vendor/slick-theme.css">
-        <link rel="stylesheet" href="assets/css/vendor/jquery-ui.min.css">
-        <link rel="stylesheet" href="assets/css/vendor/sal.css">
-        <link rel="stylesheet" href="assets/css/vendor/magnific-popup.css">
-        <link rel="stylesheet" href="assets/css/vendor/base.css">
-        <link rel="stylesheet" href="assets/css/style.min.css">
+        <link rel="stylesheet" href="{{ asset('css/vendor/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/vendor/font-awesome.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/vendor/flaticon/flaticon.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/vendor/slick.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/vendor/slick-theme.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/vendor/jquery-ui.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/vendor/sal.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/vendor/magnific-popup.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/vendor/base.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/style.min.css') }}">
 
     </head>
 
@@ -35,150 +40,7 @@
     <![endif]-->
         <a href="#top" class="back-to-top" id="backto-top"><i class="fal fa-arrow-up"></i></a>
         <!-- Start Header -->
-        <header class="header axil-header header-style-1">
 
-            <div class="axil-header-top">
-                <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col-sm-6">
-                            <div class="header-top-dropdown">
-                                <div class="dropdown">
-                                    <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        English
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="#">English</a></li>
-                                    </ul>
-                                </div>
-                                <div class="dropdown">
-                                    <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        LKR
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="#">LKR</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="header-top-link">
-                                <ul class="quick-link">
-                                    <li><a href="#">Help</a></li>
-                                    <li><a href="sign-up.html">Join Us</a></li>
-                                    <li><a href="sign-in.html">Sign In</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Start Mainmenu Area  -->
-            <div id="axil-sticky-placeholder"></div>
-            <div class="axil-mainmenu">
-                <div class="container">
-                    <div class="header-navbar">
-                        <div class="header-brand">
-                            <a href="index.html" class="logo logo-dark">
-                                <img src="assets/images/logo/logo.png" alt="Site Logo">
-                            </a>
-                            <a href="index.html" class="logo logo-light">
-                                <img src="assets/images/logo/logo-light.png" alt="Site Logo">
-                            </a>
-                        </div>
-                        <div class="header-main-nav">
-                            <!-- Start Mainmanu Nav -->
-                            <nav class="mainmenu-nav">
-                                <button class="mobile-close-btn mobile-nav-toggler"><i class="fas fa-times"></i></button>
-                                <div class="mobile-nav-brand">
-                                    <a href="index.html" class="logo">
-                                        <img src="assets/images/logo/logo.png" alt="Site Logo">
-                                    </a>
-                                </div>
-                                <ul class="mainmenu">
-                                    <li class="menu-item-has-children">
-                                        <a href="#">Menu-1</a>
-                                        <ul class="axil-submenu">
-                                            <li><a href="#">Menu-1-Item-1</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="menu-item-has-children">
-                                        <a href="#">Menu-2</a>
-                                        <ul class="axil-submenu">
-                                            <li><a href="#">Menu-2-Item-1</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="menu-item-has-children">
-                                        <a href="#">Menu-3</a>
-                                        <ul class="axil-submenu">
-                                            <li><a href="#">Menu-3-Item-1</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="#">Menu-4</a></li>
-                                    <li class="menu-item-has-children">
-                                        <a href="#">Menu-5</a>
-                                        <ul class="axil-submenu">
-                                            <li><a href="#">Menu-5-Item-1</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="#">Menu-6</a></li>
-                                </ul>
-                            </nav>
-                            <!-- End Mainmanu Nav -->
-                        </div>
-                        <div class="header-action">
-                            <ul class="action-list">
-                                <li class="axil-search">
-                                    <a href="javascript:void(0)" class="header-search-icon" title="Search">
-                                        <i class="flaticon-magnifying-glass"></i>
-                                    </a>
-                                </li>
-                                <li class="wishlist">
-                                    <a href="#">
-                                        <i class="flaticon-heart"></i>
-                                    </a>
-                                </li>
-                                <li class="shopping-cart">
-                                    <a href="#" class="cart-dropdown-btn">
-                                        <span class="cart-count">3</span>
-                                        <i class="flaticon-shopping-cart"></i>
-                                    </a>
-                                </li>
-                                <li class="my-account">
-                                    <a href="javascript:void(0)">
-                                        <i class="flaticon-person"></i>
-                                    </a>
-                                    <div class="my-account-dropdown">
-                                        <span class="title">QUICKLINKS</span>
-                                        <ul>
-                                            <li>
-                                                <a href="#">My Account</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Support</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Language</a>
-                                            </li>
-                                        </ul>
-                                        <div class="login-btn">
-                                            <a href="sign-in.html" class="axil-btn btn-bg-primary">Login</a>
-                                        </div>
-                                        <div class="reg-footer text-center">No account yet? <a href="sign-up.html" class="btn-link">REGISTER HERE.</a></div>
-                                    </div>
-                                </li>
-                                <li class="axil-mobile-toggle">
-                                    <button class="menu-btn mobile-nav-toggler">
-                                        <i class="flaticon-menu-2"></i>
-                                    </button>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- End Mainmenu Area -->
-        </header>
-        <!-- End Header -->
 
         <main class="main-wrapper">
             <!-- Start Breadcrumb Area  -->
@@ -206,11 +68,21 @@
                         <div class="axil-dashboard-author">
                             <div class="media">
                                 <div class="thumbnail">
-                                    <img src="./assets/images/avatar.png" alt="Hello Annie">
+                                    <?php
+                                    if ($user_session["imagepath"] != "") {
+                                    ?>
+                                        <img src="<?php echo($user_session["imagepath"])?>" alt="Hello Annie">
+                                    <?php
+                                    } else {
+                                    ?>
+                                        <span style="color: gray;">No Profile Photo</span>
+                                    <?php
+                                    }
+                                    ?>
                                 </div>
                                 <div class="media-body">
-                                    <h5 class="title mb-0">Hello Name</h5>
-                                    <span class="joining-date">Smart Trade Member Since Sep 2024</span>
+                                    <h5 class="title mb-0"><?php echo ($user_session["full_name"]) ?></h5>
+                                    <span class="joining-date">OLCA Member Since Sep <?php echo($user_session["school_last_cadet_year"])?></span>
                                 </div>
                             </div>
                         </div>
@@ -254,7 +126,7 @@
 
                                                             </select>
                                                         </div>
-                                                    </div>                                                        
+                                                    </div>
                                                     <div class="col-12">
                                                         <div class="form-group">
                                                             <label>Title</label>
@@ -283,7 +155,7 @@
                                                                 <option value="0">Select</option>
                                                             </select>
                                                         </div>
-                                                    </div> 
+                                                    </div>
 
                                                     <div class="col-lg-4">
                                                         <div class="form-group">
@@ -305,7 +177,7 @@
                                                             <label>Quantity</label>
                                                             <input type="number" id="qty" class="form-control" min="1" value="1">
                                                         </div>
-                                                    </div> 
+                                                    </div>
 
                                                     <div class="col-lg-4">
                                                         <label>Image 1</label>
@@ -350,7 +222,7 @@
                                                     <tbody>
                                                         <tr>
                                                             <th scope="row">#1234</th>
-                                                            <td>Apple iPhone 15 Pro <br/> Samsung Galaxy Note 20</td>
+                                                            <td>Apple iPhone 15 Pro <br /> Samsung Galaxy Note 20</td>
                                                             <td>September 02, 2024</td>
                                                             <td>Delivered</td>
                                                             <td>Rs 0.00</td>
@@ -400,8 +272,8 @@
                                                         </div>
                                                         <ul class="address-details">
                                                             <li>Name: Name</li>
-                                                            <li>Email:  example@email.com</li>
-                                                            <li>Phone:  +94 77 121 2234</li>
+                                                            <li>Email: example@email.com</li>
+                                                            <li>Phone: +94 77 121 2234</li>
                                                             <li class="mt--30">No.3B 1/4, Sri Sambuddhathva Jayanthi Mawatha<br>
                                                                 Colombo 00500, Sri Lanka</li>
                                                         </ul>
@@ -709,31 +581,62 @@
         <!-- JS
     ============================================ -->
         <!-- Modernizer JS -->
-        <script src="assets/js/vendor/modernizr.min.js"></script>
+        <script src="{{ asset('js/vendor/modernizr.min.js') }}"></script>
+
         <!-- jQuery JS -->
-        <script src="assets/js/vendor/jquery.js"></script>
+        <script src="{{ asset('js/vendor/jquery.js') }}"></script>
+
         <!-- Bootstrap JS -->
-        <script src="assets/js/vendor/popper.min.js"></script>
-        <script src="assets/js/vendor/bootstrap.min.js"></script>
-        <script src="assets/js/vendor/slick.min.js"></script>
-        <script src="assets/js/vendor/js.cookie.js"></script>
-        <!-- <script src="assets/js/vendor/jquery.style.switcher.js"></script> -->
-        <script src="assets/js/vendor/jquery-ui.min.js"></script>
-        <script src="assets/js/vendor/jquery.ui.touch-punch.min.js"></script>
-        <script src="assets/js/vendor/jquery.countdown.min.js"></script>
-        <script src="assets/js/vendor/sal.js"></script>
-        <script src="assets/js/vendor/jquery.magnific-popup.min.js"></script>
-        <script src="assets/js/vendor/imagesloaded.pkgd.min.js"></script>
-        <script src="assets/js/vendor/isotope.pkgd.min.js"></script>
-        <script src="assets/js/vendor/counterup.js"></script>
-        <script src="assets/js/vendor/waypoints.min.js"></script>
+        <script src="{{ asset('js/vendor/popper.min.js') }}"></script>
+        <script src="{{ asset('js/vendor/bootstrap.min.js') }}"></script>
+
+        <!-- Slick JS -->
+        <script src="{{ asset('js/vendor/slick.min.js') }}"></script>
+
+        <!-- js.cookie JS -->
+        <script src="{{ asset('js/vendor/js.cookie.js') }}"></script>
+
+        <!-- jQuery UI JS -->
+        <!-- <script src="{{ asset('assets/js/vendor/jquery.style.switcher.js') }}"></script> -->
+        <script src="{{ asset('js/vendor/jquery-ui.min.js') }}"></script>
+
+        <!-- jQuery UI Touch Punch -->
+        <script src="{{ asset('js/vendor/jquery.ui.touch-punch.min.js') }}"></script>
+
+        <!-- jQuery Countdown -->
+        <script src="{{ asset('js/vendor/jquery.countdown.min.js') }}"></script>
+
+        <!-- Sal.js -->
+        <script src="{{ asset('js/vendor/sal.js') }}"></script>
+
+        <!-- Magnific Popup -->
+        <script src="{{ asset('js/vendor/jquery.magnific-popup.min.js') }}"></script>
+
+        <!-- ImagesLoaded -->
+        <script src="{{ asset('js/vendor/imagesloaded.pkgd.min.js') }}"></script>
+
+        <!-- Isotope -->
+        <script src="{{ asset('js/vendor/isotope.pkgd.min.js') }}"></script>
+
+        <!-- Counterup -->
+        <script src="{{ asset('js/vendor/counterup.js') }}"></script>
+
+        <!-- Waypoints -->
+        <script src="{{ asset('js/vendor/waypoints.min.js') }}"></script>
 
         <!-- Main JS -->
-        <script src="assets/js/main.js"></script>
+        <script src="{{ asset('js/main.js') }}"></script>
 
-        <!-- My Script JS -->
-        <script src="assets/js/my-account.js"></script>
+        <!-- My Script -->
+        <!-- myaccount -->
+        <script src="{{ asset('js/signup.js') }}"></script>
+
 
     </body>
 
-</html>
+    </html>
+<?php
+} else {
+    header("Location: signin"); // Use header redirection in PHP
+    exit; // Always exit after a header redirect
+}

@@ -12,6 +12,9 @@ Route::get('/signin', function () {
     return view('signup');
 });
 
+Route::get('/homepage', function () {
+    return view('homepage');
+});
 
 Route::get('/signUp', [RouteContorller::class, 'GotoSignup'])->name('gotosignup');
 Route::get('/signIn', [RouteContorller::class, 'GotoSignin'])->name('gotosignin');
