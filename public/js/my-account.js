@@ -1,121 +1,63 @@
-var modelList;
-async function  LoadFeatures() {
-    const response = await fetch("LoadFeatures");
-    if (response.ok) {
-        const json = await response.json();
-        const categoryList = json.categoryList;
-        modelList = json.modelList;
-        const colorList = json.colorList;
-        const storageList = json.storageList;
-        const conditionList = json.productCondition;
-        loadSelect("categorySelect", categoryList, "name");
-        loadSelect("modelSelect", modelList, "name");
-        loadSelect("colorSelect", colorList, "name");
-        loadSelect("storageSelect", storageList, "value");
-        loadSelect("conditionSelect", conditionList, "name");
-    } else {
-        document.getElementById("message").innerHTML = "Please Try again Later";
-        console.log("error");
-    }
-}
+function updateProfile() {
+    var withinitialsName = document.getElementById("namewithInitials").value;
+    var fullName = document.getElementById("fullname").value;
+    var mobile = document.getElementById("mobile").value;
+    var tel = document.getElementById("tel").value;
+    var address = document.getElementById("address").value;
+    var SchoolyearInput = document.getElementById("SchoolyearInput").value;
+    var CadetyearInput = document.getElementById("CadetyearInput").value;
+    var birthday = document.getElementById("birthday").value;
 
+    var f = new FormData();
+    f.append("withinitialsName", withinitialsName);
+    f.append("fullName", fullName);
+    f.append("mobile", mobile);
+    f.append("tel", tel);
+    f.append("address", address);
+    f.append("SchoolyearInput", SchoolyearInput);
+    f.append("CadetyearInput", CadetyearInput);
+    f.append("birthday", birthday);
 
-function  loadSelect(selectTagId, list, property) {
-    const SelectTag = document.getElementById(selectTagId);
-    list.forEach(item => {
-        let optionTag = document.createElement("option");
-        optionTag.value = item.id;
-        optionTag.innerHTML = item[property];
-        SelectTag.appendChild(optionTag);
-    });
-// Real Loop  - don't use this
-//    const categorySelectTag = document.getElementById("categorySelect");
-//    categoryList.forEach(category => {
-//        let optionTag = document.createElement("option");
-//        optionTag.value = category.id;
-//        optionTag.innerHTML = category.name;
-//        categorySelectTag.appendChild(optionTag);
-//    });
+    f.append("file", document.getElementById("image").files[0]);
 
-}
-
-
-function  updateModels() {
-    let modelSelectTag = document.getElementById("modelSelect");
-    modelSelectTag.length = 1;
-    let SelectedCategoryID = document.getElementById("categorySelect").value;
-    modelList.forEach(model => {
-        if (model.category.id == SelectedCategoryID) {
-            let optionTag = document.createElement("option");
-            optionTag.value = model.id;
-            optionTag.innerHTML = model.name;
-            modelSelectTag.appendChild(optionTag);
+    var r = new XMLHttpRequest();
+    r.onreadystatechange = function () {
+        if (r.readyState == 4 && r.status == 200) {
+            var response = r.responseText;
+            alert(response);
+            // if (r.responseText) {
+            //     alert("Registerd Succes, Please Sign in ");
+            //     window.location = "signin";
+            // } else {
+            //     alert(r.responseText);
+            // }
         }
-    });
+    };
+    r.open("POST", "../updateProfileProcess.php", true);
+    r.send(f);
 }
 
+function makePayment() {
+    var PaymentAmount = document.getElementById("PaymentAmount").value;
+    var description = document.getElementById("description").value;
 
+    var f = new FormData();
+    f.append("PaymentAmount", PaymentAmount);
+    f.append("description", description);
 
-async function productListing() {
-    const categorySelect = document.getElementById("categorySelect");
-    const modelSelect = document.getElementById("modelSelect");
-    const title = document.getElementById("title");
-    const description = document.getElementById("description");
-    const storageSelect = document.getElementById("storageSelect");
-    const colorSelect = document.getElementById("colorSelect");
-    const conditionSelect = document.getElementById("conditionSelect");
-    const price = document.getElementById("price");
-    const qty = document.getElementById("qty");
-    const image1 = document.getElementById("image1");
-    const image2 = document.getElementById("image2");
-    const image3 = document.getElementById("image3");
-
-    const data = new FormData();
-    data.append("categoryId", categorySelect.value);
-    data.append("modelId", modelSelect.value);
-    data.append("title", title.value);
-    data.append("descripiton", description.value);
-    data.append("storageId", storageSelect.value);
-    data.append("colorId", colorSelect.value);
-    data.append("ConditionId", conditionSelect.value);
-    data.append("price", price.value);
-    data.append("quantity", qty.value);
-    data.append("image1", image1.files[0]);
-    data.append("image2", image2.files[0]);
-    data.append("image3", image3.files[0]);
-
-
-
-    const response = await fetch("ProductListing", {method: "POST", body: data});
-
-    if (response.ok) {
-        const json = await response.json();
-
-        console.log(json.content);
-
-        if (json.success) {
-            categorySelect.value = 0;
-            modelSelect.level = 1;
-            title.value = "";
-            storageSelect.value = 0;
-            colorSelect.value = 0;
-            price.value = "";
-            qty.value = 1;
-            image1.files = null;
-            image2.files = null;
-            image3.files = null;
-
-            document.getElementById("message").innerHTML = json.content;
-            document.getElementById("message").className = "text-success";
-
-        } else {
-            document.getElementById("message").innerHTML = json.content;
+    var r = new XMLHttpRequest();
+    r.onreadystatechange = function () {
+        if (r.readyState == 4 && r.status == 200) {
+            var response = r.responseText;
+            alert(response);
+            // if (r.responseText) {
+            //     alert("Registerd Succes, Please Sign in ");
+            //     window.location = "signin";
+            // } else {
+            //     alert(r.responseText);
+            // }
         }
-
-    } else {
-        document.getElementById("message").innerHTML = "Please Try again Later";
-        console.log("error");
-    }
-
-
+    };
+    r.open("POST", "../updateProfileProcess.php", true);
+    r.send(f);
 }

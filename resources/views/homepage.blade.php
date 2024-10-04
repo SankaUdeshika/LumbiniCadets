@@ -1,5 +1,6 @@
 <?php
 session_start();
+require "../public/Connection/connection.php";
 
 if (isset($_SESSION["user"])) {
     $user_session = $_SESSION["user"];
@@ -10,7 +11,7 @@ if (isset($_SESSION["user"])) {
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Smart Trade</title>
+        <title>OLCA</title>
         <meta name="robots" content="noindex, follow" />
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -71,7 +72,7 @@ if (isset($_SESSION["user"])) {
                                     <?php
                                     if ($user_session["imagepath"] != "") {
                                     ?>
-                                        <img src="<?php echo($user_session["imagepath"])?>" alt="Hello Annie">
+                                        <img src="<?php echo ($user_session["imagepath"]) ?>" alt="Hello Annie">
                                     <?php
                                     } else {
                                     ?>
@@ -82,7 +83,7 @@ if (isset($_SESSION["user"])) {
                                 </div>
                                 <div class="media-body">
                                     <h5 class="title mb-0"><?php echo ($user_session["full_name"]) ?></h5>
-                                    <span class="joining-date">OLCA Member Since Sep <?php echo($user_session["school_last_cadet_year"])?></span>
+                                    <span class="joining-date">OLCA Member Since Sep <?php echo ($user_session["school_last_cadet_year"]) ?></span>
                                 </div>
                             </div>
                         </div>
@@ -91,11 +92,11 @@ if (isset($_SESSION["user"])) {
                                 <aside class="axil-dashboard-aside">
                                     <nav class="axil-dashboard-nav">
                                         <div class="nav nav-tabs" role="tablist">
-                                            <a class="nav-item nav-link active" data-bs-toggle="tab" href="#nav-account" role="tab" aria-selected="false"><i class="fas fa-user"></i>Account Details</a>
-                                            <a class="nav-item nav-link" data-bs-toggle="tab" href="#nav-add-product" role="tab" aria-selected="true"><i class="fas fa-mobile-alt"></i>Products</a>
-                                            <a class="nav-item nav-link" data-bs-toggle="tab" href="#nav-product-listing" role="tab" aria-selected="false"><i class="fas fa-list"></i>Product Listing</a>
+                                            <a class="nav-item nav-link active" data-bs-toggle="tab" href="#nav-account" role="tab" aria-selected="false"><i class="fas fa-user"></i>Password Change</a>
+                                            <a class="nav-item nav-link" data-bs-toggle="tab" href="#nav-add-product" role="tab" aria-selected="true"><i class="fas fa-mobile-alt"></i>Account Details</a>
+                                            <a class="nav-item nav-link" data-bs-toggle="tab" href="#nav-product-listing" role="tab" aria-selected="false"><i class="fas fa-list"></i>OLCA Members</a>
                                             <a class="nav-item nav-link" data-bs-toggle="tab" href="#nav-orders" role="tab" aria-selected="false"><i class="fas fa-shopping-basket"></i>Orders</a>
-                                            <a class="nav-item nav-link" data-bs-toggle="tab" href="#nav-address" role="tab" aria-selected="false"><i class="fas fa-home"></i>Addresses</a>
+                                            <a class="nav-item nav-link" data-bs-toggle="tab" href="#nav-address" role="tab" aria-selected="false"><i class="fas fa-home"></i>Make Payments</a>
                                             <a class="nav-item nav-link" href="#"><i class="fal fa-sign-out"></i>Logout</a>
                                         </div>
                                     </nav>
@@ -106,97 +107,83 @@ if (isset($_SESSION["user"])) {
 
                                     <div class="tab-pane fade" id="nav-add-product" role="tabpanel">
                                         <div class="axil-dashboard-overview">
-                                            <div class="welcome-text">Create New Product</div>
+                                            <div class="welcome-text">Manage Your Account</div>
 
                                             <form class="account-details-form">
                                                 <div class="row">
-                                                    <div class="col-lg-6">
+                                                    <div class="col-12">
                                                         <div class="form-group">
-                                                            <label>Category</label>
-                                                            <select id="categorySelect" onchange="updateModels();">
-                                                                <option value="0">Select</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-6">
-                                                        <div class="form-group">
-                                                            <label>Model</label>
-                                                            <select id="modelSelect">
-                                                                <option value="0">Select</option>
-
-                                                            </select>
+                                                            <label>Name with Initals</label>
+                                                            <input type="text" class="form-control" id="namewithInitials" value="<?php echo ($user_session["with_initials_nae"]) ?>">
                                                         </div>
                                                     </div>
                                                     <div class="col-12">
                                                         <div class="form-group">
-                                                            <label>Title</label>
-                                                            <input type="text" class="form-control" id="title" value="">
+                                                            <label>Full Name</label>
+                                                            <textarea cols="1" id="fullname" rows="2"><?php echo ($user_session["full_name"]) ?></textarea>
                                                         </div>
                                                     </div>
-                                                    <div class="col-12">
+                                                    <div class="col-lg-6">
                                                         <div class="form-group">
-                                                            <label>Description</label>
-                                                            <textarea cols="1" id="description" rows="2"></textarea>
+                                                            <label>Mobile</label>
+                                                            <input type="text" class="form-control" id="mobile" value="<?php echo ($user_session["Mobile"]) ?>">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group">
+                                                            <label>Land Number</label>
+                                                            <input type="text" class="form-control" id="tel" value="<?php echo ($user_session["tel"]) ?>">
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group">
+                                                            <label>Last Year of School?</label>
+                                                            <input type="number" class="form-control" id="SchoolyearInput" name="SchoolyearInput" min="1900" max="3000" placeholder="YYYY" value="<?php echo ($user_session["school_out_year"]) ?>">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group">
+                                                            <div class="form-group">
+                                                                <label>Last Camping Date</label>
+                                                                <input type="number" class="form-control" id="CadetyearInput" name="CadetyearInput" min="1900" max="3000" placeholder="YYYY" value="<?php echo ($user_session["school_last_cadet_year"]) ?>">
+                                                            </div>
                                                         </div>
                                                     </div>
 
                                                     <div class="col-lg-6">
                                                         <div class="form-group">
-                                                            <label>Storage</label>
-                                                            <select id="storageSelect">
-                                                                <option value="0">Select</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-6">
-                                                        <div class="form-group">
-                                                            <label>Color</label>
-                                                            <select id="colorSelect">
-                                                                <option value="0">Select</option>
-                                                            </select>
+                                                            <label>Birth Day</label>
+                                                            <input type="date" class="form-control" name="birthday" id="birthday" value="<?php echo ($user_session["birthday"]) ?>">
                                                         </div>
                                                     </div>
 
-                                                    <div class="col-lg-4">
+                                                    <div class="col-6">
                                                         <div class="form-group">
-                                                            <label>Condition</label>
-                                                            <select id="conditionSelect">
-                                                                <option value="0">Select</option>
-                                                            </select>
+                                                            <label>Address</label>
+                                                            <textarea cols="1" id="address" rows="2"><?php echo ($user_session["address"]) ?></textarea>
                                                         </div>
                                                     </div>
 
-                                                    <div class="col-lg-4">
-                                                        <div class="form-group">
-                                                            <label>Price</label>
-                                                            <input type="text" class="form-control" pattern="^\d+(\.\d{2})?$" id="price" placeholder="0.00">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-4">
-                                                        <div class="form-group">
-                                                            <label>Quantity</label>
-                                                            <input type="number" id="qty" class="form-control" min="1" value="1">
-                                                        </div>
-                                                    </div>
 
-                                                    <div class="col-lg-4">
+
+
+
+                                                    <div class="col-lg-12">
                                                         <label>Image 1</label>
-                                                        <input class="form-control b2" type="file" accept="image/*" id="image1">
+                                                        <input class="form-control b2" type="file" accept="image/*" id="image">
                                                     </div>
 
-                                                    <div class="col-lg-4">
-                                                        <label>Image 2</label>
-                                                        <input class="form-control b2" type="file" accept="image/*" id="image2">
-                                                    </div>
 
-                                                    <div class="col-lg-4">
-                                                        <label>Image 3</label>
-                                                        <input class="form-control b2" type="file" accept="image/*" id="image3">
-                                                    </div>
 
                                                     <div class="col-12">
                                                         <div class="form-group mb--0 mt--30 d-grid">
-                                                            <input type="button" onclick="productListing();" class="axil-btn" value="Add Product To Listing">
+                                                            <input type="button" onclick="updateProfile();" class="axil-btn" value="Add Product To Listing">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -239,23 +226,55 @@ if (isset($_SESSION["user"])) {
                                                 <table class="table">
                                                     <thead>
                                                         <tr>
-                                                            <th scope="col">Id</th>
-                                                            <th scope="col">Title</th>
-                                                            <th scope="col">Price</th>
-                                                            <th scope="col">Quantity</th>
-                                                            <th scope="col">Date</th>
+                                                            <th scope="col">Email</th>
+                                                            <th scope="col">Name</th>
+                                                            <th scope="col">Address</th>
+                                                            <th scope="col">Mobile</th>
+                                                            <th scope="col">Land Number</th>
+                                                            <th scope="col">BirthDay</th>
+                                                            <th scope="col">School Outing</th>
+                                                            <th scope="col">Last Camp</th>
+                                                            <th scope="col"> Status</th>
                                                             <th scope="col">Actions</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr>
-                                                            <th scope="row">#1234</th>
-                                                            <td>Apple iPhone 15 Pro</td>
-                                                            <td>Rs 0.00</td>
-                                                            <td>1</td>
-                                                            <td>September 02, 2024</td>
-                                                            <td><a href="#" class="axil-btn view-btn">View</a></td>
-                                                        </tr>
+                                                        <?php
+                                                        $user_rs =  Database::search("SELECT * FROM `user` INNER JOIN `user_status` ON `user_status`.`user_status_id` = `user`.`user_status_user_status_id` ");
+                                                        $user_num = $user_rs->num_rows;
+                                                        for ($x = 0; $x < $user_num; $x++) {
+                                                            $user_data = $user_rs->fetch_assoc();
+                                                        ?>
+                                                            <tr>
+                                                                <th scope="row"><?php echo ($user_data["email"]) ?></th>
+                                                                <td><?php echo ($user_data["with_initials_nae"]) ?></td>
+                                                                <td><?php echo ($user_data["address"]) ?></td>
+                                                                <td><?php echo ($user_data["Mobile"]) ?></td>
+                                                                <td><?php echo ($user_data["tel"]) ?></td>
+                                                                <td><?php echo ($user_data["birthday"]) ?></td>
+                                                                <td><?php echo ($user_data["school_out_year"]) ?></td>
+                                                                <td><?php echo ($user_data["school_last_cadet_year"]) ?></td>
+                                                                <td><?php echo ($user_data["user_status"]) ?></td>
+                                                                <?php
+                                                                if ($user_data["user_status_user_status_id"]  == 1) {
+                                                                ?>
+                                                                    <td><a href="#" class="axil-btn view-btn">DeActivate</a></td>
+                                                                <?php
+                                                                } else  if ($user_data["user_status_user_status_id"]  == 2) {
+                                                                ?>
+                                                                    <td><a href="#" class="axil-btn view-btn">Activate</a></td>
+                                                                <?php
+                                                                } else  if ($user_data["user_status_user_status_id"]  == 3) {
+                                                                ?>
+                                                                    <td><a href="#" class="axil-btn view-btn text-danger">Activate</a></td>
+                                                                <?php
+                                                                }
+                                                                ?>
+                                                            </tr>
+                                                        <?php
+                                                        }
+                                                        ?>
+
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -267,16 +286,43 @@ if (isset($_SESSION["user"])) {
                                                 <div class="col-lg-12">
                                                     <div class="address-info mb--40">
                                                         <div class="addrss-header d-flex align-items-center justify-content-between">
-                                                            <h4 class="title mb-0">Current Shipping Address</h4>
+                                                            <h4 class="title mb-0">Membeship Buying and Payments</h4>
                                                             <a href="#" class="address-edit"><i class="far fa-edit"></i></a>
                                                         </div>
                                                         <ul class="address-details">
-                                                            <li>Name: Name</li>
-                                                            <li>Email: example@email.com</li>
-                                                            <li>Phone: +94 77 121 2234</li>
-                                                            <li class="mt--30">No.3B 1/4, Sri Sambuddhathva Jayanthi Mawatha<br>
-                                                                Colombo 00500, Sri Lanka</li>
+                                                            <li>Name: <?php echo ($user_session["with_initials_nae"]) ?></li>
+                                                            <li>Email: <?php echo ($user_session["email"]) ?></li>
+                                                            <li>Phone: <?php echo ($user_session["Mobile"]) ?></li>
+                                                            <li>Telephone: <?php echo ($user_session["Mobile"]) ?></li>
+
                                                         </ul>
+
+                                                        <div class="col-12">
+                                                            <div class="row">
+
+                                                                <div class="col-lg-6">
+                                                                    <div class="form-group">
+                                                                        <label>Amount</label>
+                                                                        <input type="text" class="form-control" id="PaymentAmount" value="" placeholder="">
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-12">
+                                                                    <div class="form-group">
+                                                                        <label>Description</label>
+                                                                        <textarea cols="1" id="description" rows="2" placeholder="Ex:- for Membership , "></textarea>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-12">
+                                                                    <div class="form-group mb--0 mt--30 d-grid">
+                                                                        <input type="button" onclick="makePayment();" class="axil-btn" value="Make Payment">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -287,19 +333,6 @@ if (isset($_SESSION["user"])) {
                                             <div class="axil-dashboard-account">
                                                 <form class="account-details-form">
                                                     <div class="row">
-                                                        <div class="col-lg-6">
-                                                            <div class="form-group">
-                                                                <label>First Name</label>
-                                                                <input type="text" class="form-control" value="">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-6">
-                                                            <div class="form-group">
-                                                                <label>Last Name</label>
-                                                                <input type="text" class="form-control" value="">
-                                                            </div>
-                                                        </div>
-
                                                         <div class="col-12">
                                                             <h5 class="title">Password Change</h5>
                                                             <div class="form-group">
@@ -629,7 +662,7 @@ if (isset($_SESSION["user"])) {
 
         <!-- My Script -->
         <!-- myaccount -->
-        <script src="{{ asset('js/signup.js') }}"></script>
+        <script src="{{ asset('js/my-account.js') }}"></script>
 
 
     </body>
