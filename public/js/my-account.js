@@ -49,15 +49,14 @@ function makePayment() {
     r.onreadystatechange = function () {
         if (r.readyState == 4 && r.status == 200) {
             var response = r.responseText;
-            alert(response);
-            // if (r.responseText) {
-            //     alert("Registerd Succes, Please Sign in ");
-            //     window.location = "signin";
-            // } else {
-            //     alert(r.responseText);
-            // }
+            if (response == "Payment Success") {
+                alert(response);
+                window.location.reload();
+            } else {
+                alert(response);
+            }
         }
     };
-    r.open("POST", "../updateProfileProcess.php", true);
+    r.open("POST", "../makePayment.php", true);
     r.send(f);
 }
